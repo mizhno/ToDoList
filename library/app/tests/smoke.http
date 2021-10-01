@@ -1,0 +1,79 @@
+GET {{host}}/ HTTP/1.1
+Content-Type: application/json
+Token: {{token}}
+
+### create {guid} -> tasklist
+
+POST {{host}}/task
+Content-Type: application/json
+Token: {{token}}
+
+{
+        "title": "",
+        "tasklist": ""
+}
+
+### toggle  {guid} -> task
+
+PATCH {{host}}/task/cef5b826-1dba-11ec-b3cf-93f06775a8cd
+Content-Type: application/json
+Token: {{token}}
+
+### rename  {guid} -> task
+
+PUT {{host}}/task/a38470da-1cb9-11ec-83e5-b3ad7b504e22
+Content-Type: application/json
+Token: {{token}}
+
+{
+    "title": "Дальнобойщики 2"
+}
+
+### delete all
+
+DELETE {{host}}/task/75f32f1a-1d38-11ec-872c-7f64bb350d3f
+Content-Type: application/json
+Token: {{token}}
+
+### delete finished
+
+DELETE {{host}}/task/finished/a38470da-1cb9-11ec-83e5-b3ad7b504e22
+Content-Type: application/json
+Token: {{token}}
+
+
+### register
+
+POST {{host}}/register
+Content-Type: application/json
+Token: {{token}}
+
+{
+    "login": "ZZZZ",
+    "password": "chimitov"
+}
+
+### authenticate
+
+POST {{host}}/authenticate
+Content-Type: application/json
+Token: {{token}}
+
+{
+    "login": "ZZZZ",
+    "password": "chimitov"
+}
+
+### create tasklist
+
+POST {{host}}/tasklist
+Content-Type: application/json
+Token: {{token}}
+
+{
+    "title": "sfsafsf"
+}
+
+
+
+

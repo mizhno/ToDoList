@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: libraryapp/nginx:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev-nginx
+    networks:
+      - nginx_default
+    env_file:
+      - .env
+  php:
+    image: libraryapp/php:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev-php-fpm
+      args:
+        uid: $UID
+        gid: $GID
+    volumes:
+      - $PWD:/opt/library
+    networks:
+      - nginx_default
+    env_file:
+      - .env
+  db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_USER: $DATABASE_USER
+      POSTGRES_PASSWORD: $DATABASE_PASSWORD
+      POSTGRES_DB: $DATABASE_DB
+    networks:
+      - nginx_default
+    ports:
+      - 5432
+
+networks:
+  nginx_default:
+    external: true
